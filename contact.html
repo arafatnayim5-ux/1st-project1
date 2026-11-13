@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101322">
+  <meta name="description" content="Get in touch and send a little hello.">
+  <title>Contact — A little hello</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="glow one" aria-hidden="true"></div>
+  <div class="glow two" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span><span>A little hello</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> The inbox is open</p>
+      <h1>Let’s <span class="accent">talk.</span></h1>
+      <p class="subtitle">Have a question, an idea, or just want to say hello? Write a note and we’ll help you start an email.</p>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="What should we call you?" required>
+          </div>
+          <div class="field">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Write your note here…" required></textarea>
+        </div>
+        <button class="submit-button" type="submit">Create an email draft <span aria-hidden="true">↗</span></button>
+        <p class="form-note">Your email app will open with your note ready. Add the recipient before sending.</p>
+      </form>
+    </main>
+    <footer class="site-footer">A good conversation starts with hello</footer>
+  </div>
+  <script>
+    const contactForm = document.querySelector('#contactForm');
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(contactForm);
+      const subject = `Hello from ${formData.get('name')}`;
+      const body = `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\n\n${formData.get('message')}`;
+      window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
